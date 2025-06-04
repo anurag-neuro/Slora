@@ -2,13 +2,16 @@
 const menuBtn = document.getElementById('menu-btn');
 const closeBtn = document.getElementById('close-btn');
 const sidebar = document.getElementById('sidebar');
+const main = document.querySelector('.main');
 
 menuBtn.addEventListener('click', () => {
   sidebar.classList.add('show');
+  main.classList.remove('sidebar-collapsed'); // sidebar is open, normal layout
 });
 
 closeBtn.addEventListener('click', () => {
   sidebar.classList.remove('show');
+  main.classList.add('sidebar-collapsed'); // sidebar collapsed, activate collapsed styles
 });
 
 // Chat logic
@@ -25,7 +28,7 @@ function addMessage(content, type = 'user') {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Generate a soft bot reply (for now it's static, can be replaced with AI later!)
+// Generate a soft bot reply (static for now)
 function getBotReply(userMsg) {
   const replies = [
     "Aww, that sounds really tough 🥺 Wanna talk more about it?",
@@ -57,9 +60,8 @@ messageInput.addEventListener('keypress', (e) => {
     sendBtn.click();
   }
 });
-// ...everything from before remains the same...
 
-// Create the typing indicator
+// Typing indicator stuff (optional backend async example)
 function showTypingIndicator() {
   const typingDiv = document.createElement('div');
   typingDiv.id = 'typing-indicator';
@@ -69,13 +71,13 @@ function showTypingIndicator() {
   chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// Remove the typing indicator
 function hideTypingIndicator() {
   const typingDiv = document.getElementById('typing-indicator');
   if (typingDiv) typingDiv.remove();
 }
 
-// Send message to backend and get bot reply
+// Example async backend call (uncomment and replace URL if needed)
+/*
 async function sendMessageToBackend(userMsg) {
   showTypingIndicator();
 
@@ -97,3 +99,12 @@ async function sendMessageToBackend(userMsg) {
     addMessage("Something went wrong 😢 Please try again.", 'bot');
   }
 }
+*/
+
+// Optional: start with sidebar collapsed for smaller screens
+window.addEventListener('load', () => {
+  if (window.innerWidth < 768) {
+    sidebar.classList.remove('show');
+    main.classList.add('sidebar-collapsed');
+  }
+});
