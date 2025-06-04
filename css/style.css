@@ -10,7 +10,7 @@
   --primary: #922f56;
   --text: #333;
   --white: #fff;
-  --input-bg: #fff;
+  --input-bg: transparent; /* changed for no bg */
   --bot-bg: #f5e8ed;
   --user-bg: #e2c8d3;
   --shadow: rgba(0, 0, 0, 0.05);
@@ -61,8 +61,27 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  transition: margin-left 0.3s ease;
 }
 
+/* When sidebar is visible, push main to right */
+.sidebar.show ~ .main {
+  margin-left: 250px;
+}
+
+/* When sidebar collapses, apply styles */
+.main.sidebar-collapsed .chat-area {
+  align-items: center; /* center the messages */
+}
+
+.main.sidebar-collapsed .bot-message,
+.main.sidebar-collapsed .user-message {
+  max-width: 50% !important; /* narrower, centered messages */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Header ---------- */
 .header {
   background-color: var(--white);
   padding: 16px 20px;
@@ -128,18 +147,21 @@ body {
   padding: 16px 20px;
   background-color: var(--white);
   border-top: 1px solid #ddd;
-  box-shadow: 0 -2px 5px var(--shadow);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
 }
 
 .input-area input {
   flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #ccc;
+  padding: 18px 20px; /* taller height with padding */
+  border: none; /* removed border for cleaner look */
   border-radius: 24px;
   font-size: 1rem;
   font-family: var(--font);
-  background-color: var(--input-bg);
+  background-color: transparent; /* removed bg */
+  box-shadow: 0 4px 12px rgba(146, 47, 86, 0.15); /* subtle smooth shadow */
   outline: none;
+  transition: width 0.3s ease;
 }
 
 .input-area button {
@@ -157,6 +179,14 @@ body {
 .input-area button:hover {
   background-color: #b63d6f;
 }
+
+/* When sidebar collapses, input area input gets wider */
+.main.sidebar-collapsed .input-area input {
+  width: 110%; /* bit wider */
+  margin-left: 0;
+}
+
+/* Typing indicator */
 #typing-indicator {
   font-style: italic;
   opacity: 0.7;
@@ -164,6 +194,10 @@ body {
 }
 
 @keyframes fade {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
 }
