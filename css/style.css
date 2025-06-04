@@ -157,3 +157,13 @@ body {
 .input-area button:hover {
   background-color: #b63d6f;
 }
+#typing-indicator {
+  font-style: italic;
+  opacity: 0.7;
+  animation: fade 1s infinite alternate;
+}
+
+@keyframes fade {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
