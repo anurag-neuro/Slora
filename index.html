@@ -1,49 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spill Safe</title>
-    <!-- Google Font: DM Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-      <button class="close-btn" onclick="toggleSidebar()">×</button>
-      <!-- You can add chat history or nav later -->
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT-like Interface</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="sidebar-new-chat-button">[+] New chat</button>
+                <button class="sidebar-toggle" id="sidebarToggle">[<]</button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#">[S] Search chats</a></li>
+                    <li><a href="#">[L] Library</a></li>
+                    <li><a href="#">[So] Sora</a></li>
+                    <li><a href="#">[G] GPTs</a></li>
+                    <li><a href="#">[M] MARKETING</a></li>
+                    <li><a href="#">[Py] Python</a></li>
+                    <li><a href="#">[H] HTML + CSS + Javascript</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-history">
+                <h3 class="history-title">Today</h3>
+                <ul>
+                    <li class="active-chat-item"><a href="#">Spill Safe Plan</a></li>
+                    <li><a href="#">Spill Safe Explained</a></li>
+                    </ul>
+            </div>
+            <div class="sidebar-footer">
+                <a href="#" class="sidebar-link">[U] Upgrade plan</a>
+                <a href="#" class="sidebar-user">[User] More access to the best models</a>
+            </div>
+        </aside>
 
-    <!-- Main Chat UI -->
-    <div class="main">
-      <!-- Header -->
-      <header class="header">
-        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-        <h1>Spill Safe</h1>
-      </header>
+        <div class="main-content-wrapper">
+            <header class="page-header">
+                <div class="header-left">
+                    <span class="app-title">ChatGPT</span>
+                    </div>
+                <div class="header-right">
+                    <button class="header-button">[↑] Share</button>
+                    <div class="user-avatar">[A]</div>
+                </div>
+            </header>
 
-      <!-- Chat Area -->
-      <div class="chat-area" id="chat-area">
-        <!-- Icebreaker message -->
-        <div class="bot-message">
-          Hey love 🤍 I'm here to listen. What’s on your mind today?
+            <main class="chat-container">
+                <div class="messages-display" id="messagesDisplay">
+                    <div class="message-group">
+                        <div class="message-bot">
+                            <div class="message-avatar-bot">[B]</div>
+                            <div class="message-content">
+                                Done! Your changes are now live on GitHub ✨
+                            </div>
+                        </div>
+                    </div>
+                    <div class="message-group">
+                        <div class="message-bot">
+                            <div class="message-avatar-bot">[B]</div>
+                            <div class="message-content">
+                                If it's your first push after cloning, VS Code might ask you to log in or provide credentials — just follow those prompts, it's chill.
+                            </div>
+                        </div>
+                    </div>
+                     <div class="message-group">
+                        <div class="message-bot">
+                             <div class="message-avatar-bot">[B]</div>
+                            <div class="message-content">
+                                Want me to walk you through the commands in terminal instead? Or nah?
+                                <div class="message-actions">
+                                    <button>[👍]</button> <button>[👎]</button> <button>[🔗]</button> <button>[📋]</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="chat-input-area">
+                    <div class="input-actions-top">
+                        <button class="input-action-button">[+]</button>
+                        <button class="input-action-button">Tools</button>
+                    </div>
+                    <div class="input-wrapper">
+                        <textarea id="chatInput" placeholder="Ask anything"></textarea>
+                        <button class="mic-button">[Mic]</button>
+                        <button class="send-button" id="sendButton" aria-label="Send message">▲</button>
+                    </div>
+                    <div class="chat-footer-info">
+                        ChatGPT can make mistakes. Check important info. See <a href="#">Cookie Preferences</a>
+                    </div>
+                </div>
+            </main>
         </div>
-      </div>
-
-      <!-- Input Area -->
-      <div class="input-area">
-        <input
-          type="text"
-          id="user-input"
-          placeholder="Type something…"
-        />
-        <button id="send-btn" onclick="sendMessage()">➤</button>
-      </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
-  </body>
+    <script src="script.js"></script>
+</body>
 </html>
