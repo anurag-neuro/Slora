@@ -34,14 +34,14 @@ body {
   padding: 20px;
   position: fixed;
   height: 100%;
-  left: -250px;
+  left: -250px; /* Hidden by default */
   top: 0;
   transition: 0.3s ease-in-out;
   z-index: 10;
 }
 
 .sidebar.show {
-  left: 0;
+  left: 0; /* Shown */
 }
 
 .close-btn {
@@ -56,27 +56,29 @@ body {
 /* ---------- Main Layout ---------- */
 .main {
   flex: 1;
-  margin-left: 0;
-  width: 100%;
+  margin-left: 0; /* Default when sidebar is hidden */
+  width: 100%; /* Default when sidebar is hidden */
   display: flex;
   flex-direction: column;
   height: 100vh;
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-/* When sidebar is visible, push main to right */
+/* When sidebar is visible, push main to right and reduce its width */
 .sidebar.show ~ .main {
-  margin-left: 120px;
+  margin-left: 250px; /* Equal to sidebar width */
+  width: calc(100% - 250px); /* Main content takes remaining width */
 }
 
-/* When sidebar collapses, apply styles */
+/* When sidebar collapses/is closed, specific styles for content */
+/* Assuming .main.sidebar-collapsed is applied when sidebar is NOT shown */
 .main.sidebar-collapsed .chat-area {
-  align-items: center; /* center the messages */
+  align-items: center; /* Center the messages horizontally */
 }
 
 .main.sidebar-collapsed .bot-message,
 .main.sidebar-collapsed .user-message {
-  max-width: 50% !important; /* narrower, centered messages */
+  max-width: 800px; /* Consistent max width for collapsed messages, similar to input area */
   margin-left: auto;
   margin-right: auto;
 }
@@ -120,8 +122,8 @@ body {
 
 .bot-message,
 .user-message {
-  max-width: 70%;
-  padding: 12px 16px;
+  max-width: 70%; /* Default max-width when sidebar is open */
+  padding: 12px 16px; /* Good padding, as requested for opened sidebar state */
   border-radius: 16px;
   line-height: 1.5;
   font-size: 1rem;
@@ -143,47 +145,59 @@ body {
 /* ---------- Input Area ---------- */
 .input-area {
   display: flex;
+  align-items: center; /* Align items vertically in the flex container */
   gap: 10px;
   padding: 16px 20px;
-  background-color: var(--white);
+  background-color: transparent; /* No background color for the input area container itself, blends with body */
   border-top: 1px solid #ddd;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-  transition: width 0.3s ease;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05); /* Soften shadow */
+  position: relative; /* Needed for positioning the absolute button */
+  max-width: 800px; /* Default max-width when sidebar is closed/not affecting main width */
+  margin: 0 auto; /* Center the input area by default */
+  transition: all 0.3s ease; /* For smooth transitions of width/margins */
 }
 
 .input-area input {
-  flex: 1;
-  padding: 18px 20px; /* taller height with padding */
-  border: none; /* removed border for cleaner look */
+  flex: 1; /* Allows input to grow and shrink within its container */
+  padding: 20px 60px 20px 20px; /* Taller height with more padding, adjusted padding-right for button */
+  border: none;
   border-radius: 24px;
   font-size: 1rem;
   font-family: var(--font);
-  background-color: transparent; /* removed bg */
-  box-shadow: 0 4px 12px rgba(146, 47, 86, 0.15); /* subtle smooth shadow */
+  background-color: transparent; /* Text input area itself has no background color, blends with body/container */
+  box-shadow: 0 4px 12px rgba(146, 47, 86, 0.1); /* Subtle smooth shadow for definition */
   outline: none;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease; /* Smooth transition for all properties */
 }
 
 .input-area button {
-  background-color: var(--primary);
-  color: var(--white);
+  position: absolute; /* Position button inside the input area */
+  right: 30px; /* Position from the right edge of .input-area, adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent; /* Minimal: no background for the button itself */
+  color: var(--primary); /* Icon color */
   border: none;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  font-size: 1.2rem;
+  width: 40px; /* Slightly larger hit area for the icon */
+  height: 40px;
+  font-size: 1.4rem; /* Larger icon */
   cursor: pointer;
   transition: 0.3s ease;
+  display: flex; /* To center the icon if it's text/svg */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Keep circular shape for hover effect */
 }
 
 .input-area button:hover {
-  background-color: #b63d6f;
+  background-color: rgba(146, 47, 86, 0.1); /* Subtle hover effect */
+  color: #b63d6f; /* Slightly darker primary color on hover */
 }
 
-/* When sidebar collapses, input area input gets wider */
-.main.sidebar-collapsed .input-area input {
-  width: 110%; /* bit wider */
-  margin-left: 0;
+/* Adjustments for when sidebar is open: input area shifts and becomes less broader */
+.sidebar.show ~ .main .input-area {
+    max-width: 600px; /* Example: make it narrower when sidebar is open */
+    /* margin: 0 auto; will still center it within the reduced .main width */
 }
 
 /* Typing indicator */
