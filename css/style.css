@@ -164,11 +164,13 @@ body {
   border-radius: 24px;
   font-size: 1rem;
   font-family: var(--font);
-  background-color: transparent; /* Text input area itself has no background color, blends with body/container */
+  background-color: var(--bg); /* <-- CHANGED: Explicitly set to match body background for seamless blending */
   box-shadow: 0 4px 12px rgba(146, 47, 86, 0.1); /* Subtle smooth shadow for definition */
   outline: none;
   transition: all 0.3s ease; /* Smooth transition for all properties */
 }
+
+/* ... (rest of the code remains the same) ... */
 
 .input-area button {
   position: absolute; /* Position button inside the input area */
