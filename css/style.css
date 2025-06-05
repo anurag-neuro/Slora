@@ -147,10 +147,11 @@ body {
   display: flex;
   align-items: center; /* Align items vertically in the flex container */
   gap: 10px;
-  padding: 16px 20px;
+  padding: 0px 0px 30px;
   background-color: transparent; /* No background color for the input area container itself, blends with body */
-  border-top: 1px solid #ddd;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05); /* Soften shadow */
+  border-top: -2px solid #ddd;
+  border-radius: 0px;
+ 
   position: relative; /* Needed for positioning the absolute button */
   max-width: 800px; /* Default max-width when sidebar is closed/not affecting main width */
   margin: 0 auto; /* Center the input area by default */
@@ -159,7 +160,7 @@ body {
 
 .input-area input {
   flex: 1; /* Allows input to grow and shrink within its container */
-  padding: 20px 60px 20px 20px; /* Taller height with more padding, adjusted padding-right for button */
+  padding: 48px 200px 30px 30px; /* Taller height with more padding, adjusted padding-right for button */
   border: none;
   border-radius: 24px;
   font-size: 1rem;
