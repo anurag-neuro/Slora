@@ -11,7 +11,7 @@
   --text: #333;
   --white: #fff;
   --input-bg: transparent; /* changed for no bg */
-  --bot-bg: #f5e8ed;
+  --bot-bg: #fdf7fa;
   --user-bg: #e2c8d3;
   --shadow: rgba(0, 0, 0, 0.05);
   --font: 'DM Sans', sans-serif;
@@ -57,16 +57,16 @@ body {
 .main {
   flex: 1;
   margin-left: 0;
-  width: 100%;
+  width: 75%;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 115vh;
   transition: margin-left 0.3s ease;
 }
 
 /* When sidebar is visible, push main to right */
 .sidebar.show ~ .main {
-  margin-left: 80px;
+  margin-left: 120px;
 }
 
 /* When sidebar collapses, apply styles */
@@ -76,7 +76,7 @@ body {
 
 .main.sidebar-collapsed .bot-message,
 .main.sidebar-collapsed .user-message {
-  max-width: 50% !important; /* narrower, centered messages */
+  max-width: 30% !important; /* narrower, centered messages */
   margin-left: auto;
   margin-right: auto;
 }
