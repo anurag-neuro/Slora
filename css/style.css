@@ -57,10 +57,10 @@ body {
 .main {
   flex: 1;
   margin-left: 0;
-  width: 75%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  height: 115vh;
+  height: 100vh;
   transition: margin-left 0.3s ease;
 }
 
@@ -76,7 +76,7 @@ body {
 
 .main.sidebar-collapsed .bot-message,
 .main.sidebar-collapsed .user-message {
-  max-width: 30% !important; /* narrower, centered messages */
+  max-width: 50% !important; /* narrower, centered messages */
   margin-left: auto;
   margin-right: auto;
 }
